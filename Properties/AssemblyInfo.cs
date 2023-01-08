@@ -33,7 +33,7 @@ using MelonLoader;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0")]
-[assembly: AssemblyFileVersion("1.0.0")]
-[assembly: MelonInfo(typeof(ParadoxOfHope_bhaptics.ParadoxOfHope_bhaptics), "ParadoxOfHope_bhaptics", "1.0.0", "Florian Fahrenberger")]
+[assembly: AssemblyVersion("1.0.1")]
+[assembly: AssemblyFileVersion("1.0.1")]
+[assembly: MelonInfo(typeof(ParadoxOfHope_bhaptics.ParadoxOfHope_bhaptics), "ParadoxOfHope_bhaptics", "1.0.1", "Florian Fahrenberger")]
 [assembly: MelonGame("Monkey-With-a-Bomb", "Paradox of Hope")]

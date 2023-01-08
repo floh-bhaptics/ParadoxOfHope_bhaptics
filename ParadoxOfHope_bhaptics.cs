@@ -24,22 +24,14 @@ namespace ParadoxOfHope_bhaptics
             tactsuitVr.PlaybackHaptics("HeartBeat");
         }
 
-        [HarmonyPatch(typeof(Revolver), "Shoot", new Type[] { })]
-        public class bhaptics_ShootRevolver
-        {
-            [HarmonyPostfix]
-            public static void Postfix(Revolver __instance)
-            {
-                tactsuitVr.GunRecoil(isRightHanded);
-            }
-        }
-
         [HarmonyPatch(typeof(RaycastWeapon), "Shoot", new Type[] {  })]
         public class bhaptics_ShootWeapon
         {
             [HarmonyPostfix]
             public static void Postfix(RaycastWeapon __instance)
             {
+                if (!__instance.readyToShoot) return;
+                if (!__instance.BulletInChamber) return;
                 bool isRight = (__instance.thisGrabber.HandSide == ControllerHand.Right);
                 tactsuitVr.GunRecoil(isRight);
             }
@@ -124,26 +116,6 @@ namespace ParadoxOfHope_bhaptics
             return (myRotation, hitShift);
         }
 
-
-        /*
-        [HarmonyPatch(typeof(PlayerBase), "OnTriggerEnter", new Type[] { typeof(Collider) })]
-        public class bhaptics_TriggerEnter
-        {
-            [HarmonyPostfix]
-            public static void Postfix(PlayerBase __instance, Collider other)
-            {
-                //tactsuitVr.LOG("Collider: " + __instance.transform.position.ToString() + " " + other.transform.position.ToString());
-                if (other.name != "PlayerController") return;
-                float hitAngle;
-                float hitShift;
-                //tactsuitVr.LOG("Other: " + other.isTrigger.ToString() + " " + other.name + " " + __instance.name + " " + (__instance == __instance.Player).ToString());
-                (hitAngle, hitShift) = getAngleAndShift(__instance.Player.transform, other.transform.position);
-                if ((hitShift >= 0.5f) || (hitShift <= -0.5f)) return;
-                tactsuitVr.PlayBackHit("Bump", hitAngle, hitShift);
-
-            }
-        }
-        */
 
         [HarmonyPatch(typeof(BackpackAutoSorting), "SnapLoot", new Type[] { })]
         public class bhaptics_SnapLoot
@@ -238,19 +210,6 @@ namespace ParadoxOfHope_bhaptics
             }
         }
 
-        [HarmonyPatch(typeof(SnapZone), "ReleaseAll", new Type[] {  })]
-        public class bhaptics_GrabReleaseAll
-        {
-            [HarmonyPostfix]
-            public static void Postfix(SnapZone __instance)
-            {
-                if (__instance == null) return;
-                //tactsuitVr.LOG("ReleaseAll: " + __instance.name);
-                //tactsuitVr.PlaybackHaptics(pattern);
-            }
-        }
-
-
 
         [HarmonyPatch(typeof(PlayerBase), "UpdateHPBar", new Type[] {  })]
         public class bhaptics_UpdateHealth
@@ -258,7 +217,6 @@ namespace ParadoxOfHope_bhaptics
             [HarmonyPostfix]
             public static void Postfix(PlayerBase __instance)
             {
-                //if (__instance.HP <= 0.0f) { tactsuitVr.StopHeartBeat(); return; }
                 if (__instance.HP <= 25.0f) tactsuitVr.StartHeartBeat();
                 else tactsuitVr.StopHeartBeat();
             }
