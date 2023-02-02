@@ -12,7 +12,7 @@ using UnityEngine;
 using Il2CppKnife.RealBlood.SimpleController;
 using Il2Cpp;
 
-[assembly: MelonInfo(typeof(ParadoxOfHope_bhaptics.ParadoxOfHope_bhaptics), "ParadoxOfHope_bhaptics", "1.0.1", "Florian Fahrenberger")]
+[assembly: MelonInfo(typeof(ParadoxOfHope_bhaptics.ParadoxOfHope_bhaptics), "ParadoxOfHope_bhaptics", "2.0.0", "Florian Fahrenberger")]
 [assembly: MelonGame("Monkey-With-a-Bomb", "Paradox of Hope")]
 
 namespace ParadoxOfHope_bhaptics
