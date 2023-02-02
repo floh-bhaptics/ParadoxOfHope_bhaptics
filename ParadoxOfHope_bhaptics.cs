@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 using MelonLoader;
 using HarmonyLib;
 using MyBhapticsTactsuit;
-using BNG;
-using EmeraldAI;
+using Il2CppBNG;
+using Il2CppEmeraldAI;
 using UnityEngine;
-using Knife.RealBlood.SimpleController;
+using Il2CppKnife.RealBlood.SimpleController;
+using Il2Cpp;
+
+[assembly: MelonInfo(typeof(ParadoxOfHope_bhaptics.ParadoxOfHope_bhaptics), "ParadoxOfHope_bhaptics", "1.0.1", "Florian Fahrenberger")]
+[assembly: MelonGame("Monkey-With-a-Bomb", "Paradox of Hope")]
 
 namespace ParadoxOfHope_bhaptics
 {
     public class ParadoxOfHope_bhaptics : MelonMod
     {
-        public static TactsuitVR tactsuitVr;
+        public static TactsuitVR tactsuitVr = null!;
         public static bool isRightHanded = true;
 
         public override void OnInitializeMelon()
